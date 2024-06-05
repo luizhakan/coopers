@@ -31,6 +31,29 @@ function showSlides(n) {
   dots[slideIndex - 1].className += " active";
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Função para limpar todas as checkboxes de um container específico
+  function clearCheckboxes(containerSelector) {
+    const checkboxes = document.querySelectorAll(`${containerSelector} .checkbox input[type="checkbox"]`);
+    checkboxes.forEach(checkbox => {
+      checkbox.checked = false;
+    });
+  }
+
+  // Adicionar event listeners para os botões "Erase All"
+  const eraseAllTodoButton = document.getElementById('eraseAllTodo');
+  const eraseAllDoneButton = document.getElementById('eraseAllDone');
+
+  eraseAllTodoButton.addEventListener('click', () => {
+    clearCheckboxes('.container-card:nth-of-type(1)');
+  });
+
+  eraseAllDoneButton.addEventListener('click', () => {
+    clearCheckboxes('.container-card:nth-of-type(2)');
+  });
+});
+
+
 document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("contactForm")
