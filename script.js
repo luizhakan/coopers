@@ -56,6 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
           function (response) {
             console.log("SUCCESS!", response.status, response.text);
             alert("E-mail enviado com sucesso!");
+            // limpar os campos
+            document.getElementById("contactForm").reset();
           },
           function (error) {
             console.log("FAILED...", error);
