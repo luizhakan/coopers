@@ -298,7 +298,6 @@
         margin: 1rem;
       }
 
-
       .sec3-quarta-sec {
         width: 100%;
         background-color: #fff;
@@ -423,100 +422,99 @@
         }
       }
 
+      footer {
+        position: relative;
+        width: 100%;
+      }
 
-footer {
-    position: relative;
-    width: 100%;
-}
+      .footer-container {
+        max-width: 1440px;
+        height: 246px;
+        margin: 0 auto;
+        position: relative;
+      }
 
-.footer-container {
-    max-width: 1440px;
-    height: 246px;
-    margin: 0 auto;
-    position: relative;
-}
+      .footer-bg {
+        width: 100%;
+        height: 246px;
+        background: black;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
 
-.footer-bg {
-    width: 100%;
-    height: 246px;
-    background: black;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
+      .footer-bar {
+        width: 100%;
+        max-width: 511px;
+        height: 41px;
+        background: #4ac959;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
 
-.footer-bar {
-    width: 100%;
-    max-width: 511px;
-    height: 41px;
-    background: #4AC959;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
+      .footer-text {
+        position: absolute;
+        color: white;
+        text-align: center;
+        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
 
-.footer-text {
-    position: absolute;
-    color: white;
-    text-align: center;
-    width: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-}
+      .need-help {
+        top: 73px;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 20px;
+      }
 
-.need-help {
-    top: 73px;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 20px;
-}
+      .email {
+        top: 121px;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 18px;
+      }
 
-.email {
-    top: 121px;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 18px;
-}
+      .rights {
+        top: 157px;
+        font-size: 14px;
+        font-weight: 400;
+      }
 
-.rights {
-    top: 157px;
-    font-size: 14px;
-    font-weight: 400;
-}
+      /* Responsiveness */
+      @media (max-width: 768px) {
+        .footer-text {
+          font-size: 18px;
+        }
 
-/* Responsiveness */
-@media (max-width: 768px) {
-    .footer-text {
-        font-size: 18px;
-    }
+        .email {
+          top: 110px;
+        }
 
-    .email {
-        top: 110px;
-    }
+        .rights {
+          top: 140px;
+        }
+      }
 
-    .rights {
-        top: 140px;
-    }
-}
+      @media (max-width: 480px) {
+        .footer-text {
+          font-size: 16px;
+        }
 
-@media (max-width: 480px) {
-    .footer-text {
-        font-size: 16px;
-    }
+        .need-help {
+          top: 60px;
+        }
 
-    .need-help {
-        top: 60px;
-    }
+        .email {
+          top: 100px;
+        }
 
-    .email {
-        top: 100px;
-    }
-
-    .rights {
-        top: 130px;
-    }
-}
+        .rights {
+          top: 130px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -774,7 +772,7 @@ footer {
           </div>
 
           <div class="sec3-quarta-sec">
-            <form>
+            <form id="contactForm">
               <div class="form-group">
                 <label for="exampleInputName" class="form-label"
                   >Your name</label
@@ -834,15 +832,25 @@ footer {
 
       <footer>
         <div class="footer-container">
-            <div class="footer-bg"></div>
-            <div class="footer-bar"></div>
-            <div class="footer-text need-help">Need help?</div>
-            <div class="footer-text email">coopers@coopers.pro</div>
-            <div class="footer-text rights">© 2021 Coopers. All rights reserved.</div>
+          <div class="footer-bg"></div>
+          <div class="footer-bar"></div>
+          <div class="footer-text need-help">Need help?</div>
+          <div class="footer-text email">coopers@coopers.pro</div>
+          <div class="footer-text rights">
+            © 2021 Coopers. All rights reserved.
+          </div>
         </div>
-    </footer>
-
+      </footer>
     </body>
     <script src="script.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.emailjs.com/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("service_14bem8d");
+      })();
+    </script>
   </body>
 </html>
