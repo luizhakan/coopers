@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coopers</title>
+
+    <style>
+      header {
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        align-items: center;
+        padding: 0.5rem;
+      }
+
+      /* tirar o scroolbar */
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      body > section.primeira-secao {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 2rem;
+      }
+
+      body > section.primeira-secao > div.left {
+        width: 50%;
+        padding: 0 2rem;
+      }
+
+      body > section.primeira-secao > div.right {
+        width: 50%;
+        height: 90vh;
+        background-image: url("assets/logo_grande.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+
+      body > section.primeira-secao > div.left > h1#title {
+        font-size: 3.5rem;
+      }
+
+      body > section.primeira-secao > div.left > h2#subtitle {
+        font-size: 2.5rem;
+        color: #4ac959;
+        margin-top: -3.5rem;
+      }
+
+      body > div.faixa-preta {
+        width: 100vw;
+        color: white;
+        background: #000000;
+        margin: 0;
+        transform: rotate(-3deg);
+        padding: 1rem 0;
+        top: -6.7rem;
+        z-index: -1;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      body > div.faixa-preta > h1#title-faixa-preta {
+        font-size: 3.5rem;
+        border-bottom: #4ac959 4px solid;
+      }
+
+      body > div.faixa-preta > p {
+        text-align: center;
+        font-size: 1.3rem;
+        width: 50%;
+      }
+
+      body > section.segunda-secao {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      .container-card {
+        display: flex;
+        width: 30%;
+        flex-direction: column;
+        margin-top: 2rem;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
+          0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        margin-right: 1rem;
+      }
+
+      .card1-linha {
+        width: 100%;
+        height: 1rem;
+        background-color: #e88d39;
+      }
+
+      .card2-linha {
+        width: 100%;
+        height: 1rem;
+        background-color: #4ac959;
+      }
+
+      .card1 {
+        padding: 1rem;
+      }
+
+      .introducao {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .introducao > h1 {
+        font-size: 2.5rem;
+        margin: -1rem;
+      }
+
+      .introducao > h2 {
+        font-size: 1.3rem;
+        opacity: 0.7;
+      }
+
+      button.eraseAll {
+        background: black !important;
+        text-align: center;
+        cursor: pointer;
+        color: white;
+        border-radius: 5px;
+        padding: 0.5rem;
+        border: none;
+        font-weight: bold;
+      }
+
+      button.eraseAll:hover {
+        background: #4ac959 !important;
+      }
+
+      .centralizar-botao {
+        display: flex;
+        justify-content: center;
+        margin: 1rem;
+      }
+
+      .checkbox {
+        margin: 0.5rem 0;
+      }
+
+      #entrar {
+        background-color: rgb(0, 0, 0);
+        color: rgb(255, 255, 255);
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      #goToToDoList {
+        background: #4ac959;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 5px;
+        padding: 0.5rem;
+        border: none;
+      }
+
+      #entrar {
+        margin-left: auto;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+      }
+
+      .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+      }
+
+      .slideshow-container img {
+        width: 50rem;
+        height: 50rem;
+      }
+
+      /* Hide the images by default */
+      .mySlides {
+        display: none;
+      }
+
+      .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+      }
+
+      /* Next & previous buttons */
+      .prev,
+      .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -22px;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+      }
+
+      /* Position the "next button" to the right */
+      .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+      }
+
+      /* On hover, add a black background color with a little bit see-through */
+      .prev:hover,
+      .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      /* Caption text */
+      .text {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+      }
+
+      /* Number text (1/3 etc) */
+      .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+      }
+
+      /* The dots/bullets/indicators */
+      .dot {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+      }
+
+      .active,
+      .dot:hover {
+        background-color: #717171;
+      }
+
+      /* Fading animation */
+      .fade {
+        animation-name: fade;
+        animation-duration: 1.5s;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0.4;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      section.quarta-secao {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      section.quarta-secao > div.container-card {
+        display: flex;
+        width: 30rem;
+        padding: 1rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 1rem;
+      }
+
+
+      .sec3-quarta-sec {
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0px 8px 16px rgba(5.84, 21.43, 42.5, 0.08);
+        border-radius: 4px;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .ao-lado {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 0.8rem;
+        font-weight: 700;
+        color: #06152b;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 0.2rem;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 4px;
+        font-size: 1.2rem;
+        color: #06152b;
+      }
+
+      .form-control::placeholder {
+        color: #9a9a9a;
+      }
+
+      .btn {
+        display: inline-block;
+        width: 100%;
+        padding: 12px;
+        background-color: #46bd62;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0px 16px 24px rgba(5.84, 21.43, 42.5, 0.12);
+      }
+
+      .btn:hover {
+        background-color: #3da651;
+      }
+
+      @media (max-width: 768px) {
+        .form-label {
+          font-size: 1rem;
+        }
+
+        .sec3-quarta-sec {
+          padding: 0 0.5rem !important;
+        }
+
+        .container-card {
+          width: 90vw !important;
+        }
+
+        .form-control {
+          font-size: 1rem;
+        }
+
+        .ao-lado {
+          flex-direction: column;
+          gap: 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .form-label {
+          font-size: 1rem;
+        }
+
+        .btn {
+          font-size: 0.8rem;
+          padding: 0.5rem;
+        }
+      }
+
+      @media (max-width: 767px) {
+        body > section.primeira-secao > div.right {
+          display: none;
+        }
+
+        body > section.primeira-secao > div.left {
+          width: 100%;
+          padding: 0;
+        }
+
+        body > div.left > p#onlyWay {
+          font-weight: 600;
+        }
+
+        body > div.faixa-preta {
+          padding-top: 0.2rem;
+          padding-bottom: 0.2rem;
+          width: 100vw;
+        }
+
+        body > div.faixa-preta > p {
+          width: 80%;
+        }
+
+        body > section.segunda-secao {
+          flex-direction: column;
+        }
+
+        .container-card {
+          width: 95%;
+          margin: 0.5rem 0;
+        }
+      }
+
+
+footer {
+    position: relative;
+    width: 100%;
+}
+
+.footer-container {
+    max-width: 1440px;
+    height: 246px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.footer-bg {
+    width: 100%;
+    height: 246px;
+    background: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.footer-bar {
+    width: 100%;
+    max-width: 511px;
+    height: 41px;
+    background: #4AC959;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.footer-text {
+    position: absolute;
+    color: white;
+    text-align: center;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.need-help {
+    top: 73px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+.email {
+    top: 121px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 18px;
+}
+
+.rights {
+    top: 157px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .footer-text {
+        font-size: 18px;
+    }
+
+    .email {
+        top: 110px;
+    }
+
+    .rights {
+        top: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-text {
+        font-size: 16px;
+    }
+
+    .need-help {
+        top: 60px;
+    }
+
+    .email {
+        top: 100px;
+    }
+
+    .rights {
+        top: 130px;
+    }
+}
+    </style>
+  </head>
+  <body>
+    <header>
+      <img
+        id="logo-cabecalho"
+        src="assets/Logo.png"
+        alt="logo pequena no cabeçalho"
+      />
+      <button id="entrar">entrar</button>
+    </header>
+
+    <body>
+      <section class="primeira-secao">
+        <div class="left">
+          <h1 id="title">Organize</h1>
+          <h2 id="subtitle">your daily jobs</h2>
+          <p id="onlyWay">The only way to get things done</p>
+          <a id="goToToDoList" href="#"> Go to To-do list </a>
+        </div>
+
+        <div class="right">
+          <!-- <img src="assets/logo_grande.jpeg" alt="logo coopers grande"> -->
+        </div>
+      </section>
+
+      <div class="faixa-preta">
+        <h1 id="title-faixa-preta">To-do List</h1>
+
+        <p>
+          Drag and drop to set your main priorities, check when done and create
+          what´s new.
+        </p>
+      </div>
+
+      <section class="segunda-secao">
+        <div class="container-card">
+          <div class="card1-linha"></div>
+          <div class="card1">
+            <div class="introducao">
+              <h1>To-do</h1>
+              <h2>
+                Take a breath. <br />
+                Start doing.
+              </h2>
+            </div>
+            <div class="container-checkboxes">
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox1" />
+                <label for="checkbox1">This is a new task</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox2" />
+                <label for="checkbox2">Develop the To-do list page</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox3" />
+                <label for="checkbox3">Create the drag-and-drop function</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox4" />
+                <label for="checkbox4">Add new tasks</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox5" />
+                <label for="checkbox5">Delete itens</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox6" />
+                <label for="checkbox6">Erase all</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox7" />
+                <label for="checkbox7">Checked item goes to Done list</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox8" />
+                <label for="checkbox8">This item label may be edited</label>
+              </div>
+            </div>
+            <div class="centralizar-botao">
+              <button id="eraseAllTodo" class="eraseAll">Erase All</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="container-card">
+          <div class="card2-linha"></div>
+          <div class="card1">
+            <div class="introducao">
+              <h1>Done</h1>
+              <h2>
+                Congratulation! <br />
+                You have done 5 tasks
+              </h2>
+            </div>
+            <div class="container-checkboxes">
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox9" checked />
+                <label for="checkbox9">Get FTP credentials</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox10" checked />
+                <label for="checkbox10">Home Page Design </label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox11" checked />
+                <label for="checkbox11">E-mail John about the deadline</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox12" checked />
+                <label for="checkbox12">Create a Google Drive folder</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox13" checked />
+                <label for="checkbox13">Send a gift to the client</label>
+              </div>
+            </div>
+            <div class="centralizar-botao">
+              <button id="eraseAllDone" class="eraseAll">Erase All</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="terceira-secao">
+        <div class="good-things"></div>
+        <div class="slideshow-container">
+          <div class="mySlides fade">
+            <div class="numbertext">1 / 4</div>
+            <img
+              src="https://source.unsplash.com/random?airplanes"
+              style="width: 100%"
+            />
+            <div class="text">Caption Text</div>
+          </div>
+
+          <div class="mySlides fade">
+            <div class="numbertext">2 / 4</div>
+            <img
+              src="https://source.unsplash.com/random?soccer"
+              style="width: 100%"
+            />
+            <div class="text">Caption Two</div>
+          </div>
+
+          <div class="mySlides fade">
+            <div class="numbertext">3 / 4</div>
+            <img src="https://source.unsplash.com/random" style="width: 100%" />
+            <div class="text">Caption Three</div>
+          </div>
+
+          <div class="mySlides fade">
+            <div class="numbertext">4 / 4</div>
+            <img
+              src="https://source.unsplash.com/random?mountains"
+              style="width: 100%"
+            />
+            <div class="text">Caption Four</div>
+          </div>
+          <div>
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+          </div>
+          <br />
+
+          <!-- The dots/circles -->
+          <div style="text-align: center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="quarta-secao"
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <div class="container-card" style="padding: 1rem">
+          <div
+            class="sec1-quarta-sec"
+            style="display: flex; justify-content: center; align-items: center"
+          >
+            <img
+              src="assets/foto_contato.jpeg"
+              width="191px"
+              height="191px"
+              style="border-radius: 50%"
+            />
+          </div>
+
+          <div
+            class="sec2-quarta-sec"
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: left;
+              align-items: center;
+              position: relative;
+              margin-bottom: 1rem;
+            "
+          >
+            <div
+              class="back-verde-email"
+              style="
+                background: #4ac959;
+                width: 4rem;
+                height: 4rem;
+                border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <img
+                src="assets/email-svgrepo-com.svg"
+                width="80%"
+                height="80%"
+              />
+            </div>
+
+            <div class="GetInTouch" style="width: 16rem; margin-left: 1rem">
+              <span
+                style="
+                  color: #06152b;
+                  font-size: 24px;
+                  font-family: Montserrat;
+                  font-weight: 400;
+                  text-transform: uppercase;
+                  letter-spacing: 1.92px;
+                  word-wrap: break-word;
+                "
+                >GET IN<br /></span
+              ><span
+                style="
+                  color: #06152b;
+                  font-size: 24px;
+                  font-family: Montserrat;
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  letter-spacing: 1.92px;
+                  word-wrap: break-word;
+                "
+                >TOUCH</span
+              >
+            </div>
+          </div>
+
+          <div class="sec3-quarta-sec">
+            <form>
+              <div class="form-group">
+                <label for="exampleInputName" class="form-label"
+                  >Your name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputName"
+                  aria-describedby="nameHelp"
+                  placeholder="type your name here"
+                />
+              </div>
+
+              <div class="ao-lado">
+                <div class="form-group">
+                  <label for="exampleInputEmail1" class="form-label"
+                    >Email*</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="example@example.com"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPhone" class="form-label"
+                    >Telephone*</label
+                  >
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="exampleInputPhone"
+                    aria-describedby="phoneHelp"
+                    placeholder="(00) ____-____"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1" class="form-label"
+                  >Message*</label
+                >
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  placeholder="type your message here"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn">SEND NOW</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-container">
+            <div class="footer-bg"></div>
+            <div class="footer-bar"></div>
+            <div class="footer-text need-help">Need help?</div>
+            <div class="footer-text email">coopers@coopers.pro</div>
+            <div class="footer-text rights">© 2021 Coopers. All rights reserved.</div>
+        </div>
+    </footer>
+
+    </body>
+    <script src="script.js"></script>
+  </body>
+</html>
