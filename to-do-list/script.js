@@ -29,34 +29,62 @@ document.addEventListener("DOMContentLoaded", () => {
     loggedInUser.tasks.forEach((task, index) => {
       const taskElement = document.createElement("div");
       taskElement.className = "checkbox flex items-center mb-2";
-
+    
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.id = `task${index}`;
       checkbox.checked = task.completed;
       checkbox.className = "mr-2";
-
+    
       const label = document.createElement("label");
       label.setAttribute("for", `task${index}`);
       label.textContent = task.description;
       label.className = "text-gray-700";
-
+    
+      // Adicionando botão de apagar
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Apagar";
+      deleteButton.className = "bg-red-500 text-white px-2 py-1 rounded ml-2";
+    
+      deleteButton.addEventListener("click", () => {
+        loggedInUser.tasks.splice(index, 1);
+        saveTasks();
+        renderTasks();
+      });
+    
+      // Adicionando botão de editar
+      const editButton = document.createElement("button");
+      editButton.textContent = "Editar";
+      editButton.className = "bg-blue-500 text-white px-2 py-1 rounded ml-2";
+    
+      editButton.addEventListener("click", () => {
+        const newDescription = prompt("Digite a nova descrição da tarefa:", task.description);
+        if (newDescription) {
+          loggedInUser.tasks[index].description = newDescription;
+          saveTasks();
+          renderTasks();
+        }
+      });
+    
       taskElement.appendChild(checkbox);
       taskElement.appendChild(label);
-
+      taskElement.appendChild(editButton);
+      taskElement.appendChild(deleteButton);
+    
       if (task.completed) {
         doneList.appendChild(taskElement);
         doneTasksCount++;
       } else {
         todoList.appendChild(taskElement);
       }
-
+    
       checkbox.addEventListener("change", () => {
         task.completed = checkbox.checked;
         saveTasks();
         renderTasks();
       });
     });
+    
 
     doneCount.textContent = doneTasksCount;
   }
