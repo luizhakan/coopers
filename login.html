@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Login / Sign up</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       .sombra {
@@ -24,30 +24,31 @@
           />
         </div>
         <div class="texto mt-4 sm:mt-0">
-          <h1 class="font-bold text-3xl sm:text-6xl">Sign in</h1>
+          <h1 class="font-bold text-3xl sm:text-6xl">Sign in / Sign up</h1>
           <p class="text-2xl sm:text-5xl text-[#4AC959]">to access your list</p>
         </div>
       </div>
 
-      <!-- formulário -->
-
       <div class="form mt-8">
-        <form class="flex flex-col">
+        <form id="form" class="flex flex-col">
           <input
             class="border-2 border-black rounded-lg p-4 mb-4 text-xs sm:text-sm md:text-base lg:text-lg"
             type="text"
-            placeholder="Email"
+            placeholder="User"
           />
           <input
             class="border-2 border-black rounded-lg p-4 mb-4 text-xs sm:text-sm md:text-base lg:text-lg"
             type="password"
             placeholder="Password"
           />
-          <button class="btn bg-[#4AC959] text-white font-bold mb-4 rounded-lg p-4 text-xs sm:text-sm md:text-base lg:text-lg w-[100%] sm:w-auto ">Sign in</button>
+          <button class="btn bg-[#4AC959] text-white font-bold mb-4 rounded-lg p-4 text-xs sm:text-sm md:text-base lg:text-lg w-[100%] sm:w-auto btn-signin">Sign in</button>
+
+          <button class="btn bg-[#4AC959] text-white font-bold mb-4 rounded-lg p-4 text-xs sm:text-sm md:text-base lg:text-lg w-[100%] sm:w-auto btn-signup">Sign up</button>
         </form>
       </div>
+
     </div>
 
-    <script src="script.js"></script>
+    <script src="/login/script.js"></script>
   </body>
 </html>

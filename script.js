@@ -1,6 +1,12 @@
 let slideIndex = 1;
 showSlides(slideIndex);
 
+let botaoEntrar = document.getElementById("entrar");
+
+botaoEntrar.addEventListener("click", () => {
+  window.location.href = "/login.html";
+});
+
 // Next/previous controls
 function plusSlides(n) {
   showSlides((slideIndex += n));
@@ -96,11 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  var modal = document.getElementById('modal');
-  var btn = document.getElementById('entrar');
-
-  btn.onclick = function() {
-    window.location.href = '/login/login.html';
-  }
+// se existir uma flag na localStorage chamada loggedInUser, redirecionar para a página de listagem de tarefas: to-do-list.html se não, ficar na página inicial
+window.addEventListener('load', (event) => {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    console.log(loggedInUser);
+    if (loggedInUser) {
+        window.location.href = 'to-do-list.html';
+    }
 });
