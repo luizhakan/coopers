@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
       label.textContent = task.description;
       label.className = "text-gray-700";
     
-      // Adicionando botão de apagar
       const deleteButton = document.createElement("button");
       deleteButton.textContent = "Apagar";
       deleteButton.className = "bg-red-500 text-white px-2 py-1 rounded ml-2";
@@ -52,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
         renderTasks();
       });
     
-      // Adicionando botão de editar
       const editButton = document.createElement("button");
       editButton.textContent = "Editar";
       editButton.className = "bg-blue-500 text-white px-2 py-1 rounded ml-2";
