@@ -95,3 +95,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  var modal = document.getElementById('modal');
+  var btn = document.getElementById('entrar');
+
+  btn.onclick = function() {
+    window.location.href = '/login/login.html';
+  }
+});
