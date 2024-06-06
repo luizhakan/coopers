@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .sombra {
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+      }
+    </style>
+  </head>
+  <body class="flex flex-col items-center justify-center h-screen">
+    <div class="container sombra h-full w-full sm:h-[40rem] sm:w-[50rem] p-4">
+      <div class="flex justify-end">
+        <button class="font-bold btn mb-4">close</button>
+      </div>
+      <div class="imagem-e-texto flex flex-col sm:flex-row">
+        <div class="imagem mr-4">
+          <img
+            src="https://source.unsplash.com/random"
+            class="w-full h-[10rem] sm:w-[10rem] rounded-xl"
+          />
+        </div>
+        <div class="texto mt-4 sm:mt-0">
+          <h1 class="font-bold text-3xl sm:text-6xl">Sign in</h1>
+          <p class="text-2xl sm:text-5xl text-[#4AC959]">to access your list</p>
+        </div>
+      </div>
+
+      <!-- formulário -->
+
+      <div class="form mt-8">
+        <form class="flex flex-col">
+          <input
+            class="border-2 border-black rounded-lg p-4 mb-4 text-xs sm:text-sm md:text-base lg:text-lg"
+            type="text"
+            placeholder="Email"
+          />
+          <input
+            class="border-2 border-black rounded-lg p-4 mb-4 text-xs sm:text-sm md:text-base lg:text-lg"
+            type="password"
+            placeholder="Password"
+          />
+          <button class="btn bg-[#4AC959] text-white font-bold mb-4 rounded-lg p-4 text-xs sm:text-sm md:text-base lg:text-lg w-[100%] sm:w-auto ">Sign in</button>
+        </form>
+      </div>
+    </div>
+  </body>
+
+</html>
